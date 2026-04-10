@@ -52,7 +52,6 @@ If the record has already been processed (its ID exists in the Data Store), the 
 Polls the `Requests` database every 15 minutes for updated records. Passes each updated record as a bundle to the next step. Fields tracked: `Title`, `Status`, `Owner`, `Updated at`.
 
 ![Notion Requests Database](Notion_requests_database_jpg.jpg)
-
 ---
 
 ### 2 · Filter — Status is Done
@@ -71,15 +70,6 @@ Splits the flow into conditional branches. Branch 1 handles confirmed Done recor
 ### 4 · Notify Slack — Request Completed
 
 ![Slack Notification — #automation-test](Slack%20notifcation_new.JPG)
-
-Sends a formatted message to **#automation-test** using `ifempty()` fallback — substitutes **"Unknown"** if Title or Owner is blank.
-
-```
-Request completed
-Title:        [Title]
-Owner:        [Owner]
-Completed at: [Updated at]
-```
 
 ---
 
