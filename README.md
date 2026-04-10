@@ -23,7 +23,6 @@ An end-to-end automation that watches a Notion database for status changes, fire
 - [Full Workflow](#full-workflow)
 - [How It Works](#how-it-works)
 - [Module Breakdown](#module-breakdown)
-- [Live Screenshots](#live-screenshots)
 - [Test Results](#test-results)
 - [Tools Used](#tools-used)
 - [Assignment Checklist](#assignment-checklist)
@@ -52,14 +51,20 @@ If the record has already been processed (its ID exists in the Data Store), the 
 ### 1 · Watch Requests Database — Notion
 Polls the `Requests` database every 15 minutes for updated records. Passes each updated record as a bundle to the next step. Fields tracked: `Title`, `Status`, `Owner`, `Updated at`.
 
+---
+
 ### 2 · Filter — Status is Done
 
 ![Filter Module — Status is Done](Filter%20Module%20_Note.JPG)
 
 Checks that the record's `Status` field equals **Done**. Stops execution immediately if the status is anything else. Only confirmed Done records reach the Router.
 
+---
+
 ### 3 · Router
 Splits the flow into conditional branches. Branch 1 handles confirmed Done records and fires all 3 downstream actions. Branch 2 is a fallback for any other status that passes the initial filter.
+
+---
 
 ### 4 · Notify Slack — Request Completed
 
@@ -74,46 +79,18 @@ Owner:        [Owner]
 Completed at: [Updated at]
 ```
 
+---
+
 ### 5 · Log to Automation Sheet — Google Sheets
 
 ![Google Sheets Automation Log](Automation%20log_new.jpg)
 
 Appends a new row to the **Automation Log** spreadsheet with columns: `Title` · `Owner` · `Status` · `Timestamp`. Uses `ifempty()` to handle blank fields without breaking the scenario.
 
+---
+
 ### 6 · Save Processed Record — Data Store
 Saves the record ID to the **Processed Requests** Data Store. Future runs check this store — if the ID already exists, the scenario does **not** re-fire. This is what makes duplicate protection work.
-
----
-
-## 📸 Live Screenshots
-
-### Full Scenario Canvas — All Modules Green
-
-![Full Workflow Canvas](Full%20test%20run_%20recent.jpg)
-
----
-
-### Filter Module — Status is Done
-
-![Filter Module Note](Filter%20Module%20_Note.JPG)
-
----
-
-### Slack Notification — #automation-test
-
-![Slack Notification](Slack%20notifcation_new.JPG)
-
----
-
-### Google Sheets — Automation Log
-
-![Automation Log](Automation%20log_new.jpg)
-
----
-
-### Duplicate Protection — Test Run 2
-
-![Duplicate Protection Blocks Re-trigger](duplicate%20protection%20blocks%20a%20re-trigger%20.jpg)
 
 ---
 
