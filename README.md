@@ -49,12 +49,9 @@ If the record has already been processed (its ID exists in the Data Store), the 
 ## 🧩 Module Breakdown
 
 ### 1 · Watch Requests Database — Notion
-
-![Notion Requests Database](Notion_requests_database.jpg)
-
 Polls the `Requests` database every 15 minutes for updated records. Passes each updated record as a bundle to the next step. Fields tracked: `Title`, `Status`, `Owner`, `Updated at`.
 
-> Only records with **Status = Done** proceed past the filter. Records with New or In Progress status are stopped.
+![Notion Requests Database](Notion_requests_database_jpg.jpg)
 
 ---
 
