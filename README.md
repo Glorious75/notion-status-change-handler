@@ -32,7 +32,8 @@ An end-to-end automation that watches a Notion database for status changes, fire
 
 ## 🔁 Full Workflow
 
-![Notion Requests Database](Notion_requests_database.jpg)
+![Full Make.com Scenario — All Modules Active and Green](Full%20test%20run_%20recent.jpg)
+
 
 > All 6 modules active and passing — **Watch DB → Filter → Router → Slack → Google Sheets → Data Store**
 
@@ -51,7 +52,7 @@ If the record has already been processed (its ID exists in the Data Store), the 
 ### 1 · Watch Requests Database — Notion
 Polls the `Requests` database every 15 minutes for updated records. Passes each updated record as a bundle to the next step. Fields tracked: `Title`, `Status`, `Owner`, `Updated at`.
 
-![Notion Requests Database](Notion_requests_database_jpg.jpg)
+![Notion Requests Database](Notion_requests_database.jpg)
 ---
 
 ### 2 · Filter — Status is Done
